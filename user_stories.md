@@ -9,7 +9,7 @@ User Stories Bus Mall
 - As a **Developer** I want:
     - the click data in a list format so that my my client can view the information.
     - the style of the page to look clean and good.
-    - the images not be in the same place after a click.
+    - the images should not duplicate in that instance and should duplicate with the next three images right after.
     - to use only one event listener and handler.
     - to use object-oriented programming to build this site, so that the site will be more effective and the code will be easier to read and understand.
 - As a **Focus Group Participant** I want:
