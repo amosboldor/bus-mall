@@ -1,19 +1,28 @@
-div {
+#imgs {
+  margin-top: 30px;
   border: 2px solid black;
   margin: 0 auto;
-  width: 1200px;
-  height: 400px;
-  text-align: center;
+  width: 1170px;
+  height: 410px;
+  position: relative;
+  background-color: #1a75ff;
 }
-img {
-  border: 1px solid black;
+#img1 {
+  position: absolute;
+  top:30px;
+  left: 30px;
+}
+#img2 {
+  position: absolute;
+  top: 30px;
+  left: 410px;
+}
+#img3 {
+  position: absolute;
+  top: 30px;
+  left: 790px;
 }
 button {
-  display: block;
-}
-canvas {
-  border: 2px solid black;
-  margin: 0 auto;
-  width: 1200px;
-  height: 300px;
+  display: inline;
+  text-align: center;
 }

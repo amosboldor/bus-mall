@@ -5,6 +5,11 @@ var imgEl1 = document.getElementById('img1');
 var imgEl2 = document.getElementById('img2');
 var imgEl3 = document.getElementById('img3');
 
+var chart = document.getElementById('draw-chart');
+chart.style.display = 'none';
+var list = document.getElementById('draw-list');
+list.style.display = 'none';
+
 var products = [];
 var productsName = [];
 var votes = [];
@@ -120,9 +125,10 @@ function clickHandler(event) {
     if (numOfClicks === 25) {
       console.log('25 clicks');
       numOfClicks = 0;
-      displayList();
       updateChartArrays();
       divEl.removeEventListener('click', clickHandler);
+      chart.style.display = 'block';
+      list.style.display = 'block';
     } else {
       checkImg();
     }
@@ -211,8 +217,12 @@ function drawChart() {
 // EVENT LISTENERS
 // ++++++++++++++++++++++++++++++++++++++++++++
 
-document.getElementById('draw-chart').addEventListener('click', function(){
+chart.addEventListener('click', function(){
   drawChart();
+});
+
+list.addEventListener('click', function(){
+  displayList();
 });
 
 divEl.addEventListener('click', clickHandler);
