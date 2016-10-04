@@ -6,6 +6,8 @@ var imgEl2 = document.getElementById('img2');
 var imgEl3 = document.getElementById('img3');
 
 var products = [];
+var productsName = [];
+var votes = [];
 
 function Product(name, path) {
   this.name = name;
@@ -51,20 +53,20 @@ function render() {
 
 function noDup() {
   console.log(randomNums, 'beggining of no dup');
-  randomNums.push(randomNum()); // make first number, LEFT
+  randomNums.push(randomNum());
 
   while(randomNums[0] === oldImgNum[0] || randomNums[0] === oldImgNum[1] || randomNums[0] === oldImgNum[2]) {
     console.log(randomNums, 'Duplicate with first num, fixed');
     randomNums[0] = randomNum();
   }
 
-  randomNums.push(randomNum()); // make second number, CENTER
+  randomNums.push(randomNum());
 
   while (randomNums[1] === randomNums[0] || randomNums[1] === oldImgNum[0] || randomNums[1] === oldImgNum[1] || randomNums[1] === oldImgNum[2]) {
     console.log(randomNums, 'Duplicate with second number, fixed');
     randomNums[1] = randomNum();
   }
-  randomNums.push(randomNum()); // make third number, RIGHT
+  randomNums.push(randomNum());
 
   while (randomNums[2] === randomNums[0] || randomNums[2] === randomNums[1] || randomNums[2] === oldImgNum[0] || randomNums[2] === oldImgNum[1] || randomNums[2] === oldImgNum[2]) {
     console.log(randomNums, 'Duplicate with third number, fixed');
@@ -105,6 +107,13 @@ var oldImgNum = [];
 noDup();
 render();
 
+function updateChartArrays() {
+  for (var i = 0; i < products.length; i++) {
+    productsName[i] = products[i].name;
+    votes[i] = products[i].numTimeClick;
+  }
+}
+
 function clickHandler(event) {
   console.log('called event');
   if (event.target !== event.currentTarget) {
@@ -112,6 +121,7 @@ function clickHandler(event) {
       console.log('25 clicks');
       numOfClicks = 0;
       displayList();
+      updateChartArrays();
       divEl.removeEventListener('click', clickHandler);
     } else {
       checkImg();
@@ -121,5 +131,88 @@ function clickHandler(event) {
   }
   event.stopPropagation();
 }
+
+// ++++++++++++++++++++++++++++++++++++++++++++
+// CHART Data + Dunction to Draw Chart
+// ++++++++++++++++++++++++++++++++++++++++++++
+
+var data = {
+  labels: productsName,
+  datasets: [{
+    label: '# of Votes',
+    data: votes,
+    backgroundColor: [
+      'rgba(54, 162, 235, 0.7)',
+      'rgba(255, 206, 86, 0.7)',
+      'rgba(75, 192, 192, 0.7)',
+      'rgba(153, 102, 255, 0.7)',
+      'rgba(255, 159, 64, 0.7)',
+      'rgba(54, 162, 235, 0.7)',
+      'rgba(255, 206, 86, 0.7)',
+      'rgba(75, 192, 192, 0.7)',
+      'rgba(153, 102, 255, 0.7)',
+      'rgba(255, 159, 64, 0.7)',
+      'rgba(54, 162, 235, 0.7)',
+      'rgba(255, 206, 86, 0.7)',
+      'rgba(75, 192, 192, 0.7)',
+      'rgba(153, 102, 255, 0.7)',
+      'rgba(255, 159, 64, 0.7)',
+      'rgba(54, 162, 235, 0.7)',
+      'rgba(255, 206, 86, 0.7)',
+      'rgba(75, 192, 192, 0.7)',
+      'rgba(153, 102, 255, 0.7)',
+      'rgba(255, 159, 64, 0.7)'
+    ],
+    borderColor: [
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)',
+      'rgba(0,0,0,1)'
+    ],
+    borderWidth: 1
+  }]
+};
+
+function drawChart() {
+  var ctx = document.getElementById('productChart');
+  var productChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true,
+            stepSize: 1
+          }
+        }]
+      }
+    }
+  });
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++++
+// EVENT LISTENERS
+// ++++++++++++++++++++++++++++++++++++++++++++
+
+document.getElementById('draw-chart').addEventListener('click', function(){
+  drawChart();
+});
 
 divEl.addEventListener('click', clickHandler);
