@@ -42,11 +42,6 @@ var numOfClicks = 0;
 function randomNum() {
   return Math.floor(Math.random() * (19 + 1));
 }
-function pushRandNums() {
-  randomNums.push(randomNum());
-  randomNums.push(randomNum());
-  randomNums.push(randomNum());
-}
 
 function render() {
   imgEl1.setAttribute('src', products[randomNums[0]].path);
@@ -56,18 +51,26 @@ function render() {
 
 function noDup() {
   console.log(randomNums, 'beggining of no dup');
-  while (randomNums[0] === randomNums[1]) {
-    console.log(randomNums, 'Duplicate between first and second numbers caught and fixed');
+  randomNums.push(randomNum()); // make first number, LEFT
+
+  while(randomNums[0] === oldImgNum[0] || randomNums[0] === oldImgNum[1] || randomNums[0] === oldImgNum[2]) {
+    console.log(randomNums, 'Duplicate with first num, fixed');
     randomNums[0] = randomNum();
   }
-  while (randomNums[0] === randomNums[2]) {
-    console.log(randomNums, 'Duplicate between first and third numbers caught and fixed');
+
+  randomNums.push(randomNum()); // make second number, CENTER
+
+  while (randomNums[1] === randomNums[0] || randomNums[1] === oldImgNum[0] || randomNums[1] === oldImgNum[1] || randomNums[1] === oldImgNum[2]) {
+    console.log(randomNums, 'Duplicate with second number, fixed');
+    randomNums[1] = randomNum();
+  }
+  randomNums.push(randomNum()); // make third number, RIGHT
+
+  while (randomNums[2] === randomNums[0] || randomNums[2] === randomNums[1] || randomNums[2] === oldImgNum[0] || randomNums[2] === oldImgNum[1] || randomNums[2] === oldImgNum[2]) {
+    console.log(randomNums, 'Duplicate with third number, fixed');
     randomNums[2] = randomNum();
   }
-  while (randomNums[1] === randomNums[2]) {
-    console.log(randomNums, 'Duplicate between third and second numbers caught and fixed');
-    randomNums[2] = randomNum();
-  }
+
   console.log(randomNums, 'end of no dup');
 }
 
@@ -82,12 +85,8 @@ function checkImg() {
   }
   var clickedItem = event.target.id;
   console.log('Clicked on ' + clickedItem);
-  if (numOfClicks > 1) {
-    console.log('Changed oldImgNum');
-    oldImgNum = randomNums;
-  }
+  oldImgNum = randomNums;
   randomNums = [];
-  pushRandNums();
   noDup();
   render();
 }
@@ -102,8 +101,7 @@ function displayList() {
   document.body.appendChild(ulEl);
 }
 
-var oldImgNum = randomNums;
-pushRandNums();
+var oldImgNum = [];
 noDup();
 render();
 
