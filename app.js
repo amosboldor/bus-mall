@@ -48,7 +48,8 @@ function pushRandNums() {
   randomNums.push(randomNum());
 }
 pushRandNums();
-var imgNum = randomNums[0];
+noDup();
+
 var oldImgNum = randomNums;
 
 function render() {
@@ -58,23 +59,37 @@ function render() {
 }
 render();
 
+function noDup() {
+  console.log(randomNums, 'beggining of no dup');
+  while (randomNums[0] === randomNums[1]) {
+    if (randomNums.indexOf(randomNums[0]) === 0) {
+      console.log(randomNums, 'Duplicate between first and second numbers caught and fixed');
+      randomNums[1] = randomNum();
+    }
+  }
+  while (randomNums[0] === randomNums[2]) {
+    console.log(randomNums, 'Duplicate between first and third numbers caught and fixed');
+    randomNums[2] = randomNum();
+  }
+  while (randomNums[1] === randomNums[2]) {
+    console.log(randomNums, 'Duplicate between third and second numbers caught and fixed');
+    randomNums[2] = randomNum();
+  }
+  console.log(randomNums, 'end of no dup');
+}
+
 function checkImg() {
   ++numOfClicks;
   var clickedItem = event.target.id;
   console.log('Clicked on ' + clickedItem);
+  randomNums = [];
   pushRandNums();
-  var imgNewNum = randomNums[0];
-  while (imgNewNum === imgNum) {
-    randomNums = [];
-    pushRandNums();
-    imgNewNum = randomNums[0];
-  }
-  imgNum = imgNewNum;
+  noDup();
   render();
 }
 
 function clickHandler(event) {
-  console.log('called event', event);
+  console.log('called event');
   if (event.target !== event.currentTarget) {
     if (numOfClicks === 25) {
       console.log('25 clicks');
