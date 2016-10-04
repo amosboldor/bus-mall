@@ -1,3 +1,17 @@
+#top {
+  height: 200px;
+  width: 600px;
+  margin: 0 auto;
+}
+p {
+  height: 100px;
+  width: 300px;
+  margin: 0 auto;
+}
+h1 {
+  width: 380px;
+  margin: 30px auto;
+}
 #imgs {
   margin-top: 30px;
   border: 2px solid black;
