@@ -82,6 +82,10 @@ function checkImg() {
   }
   var clickedItem = event.target.id;
   console.log('Clicked on ' + clickedItem);
+  if (numOfClicks > 1) {
+    console.log('Changed oldImgNum');
+    oldImgNum = randomNums;
+  }
   randomNums = [];
   pushRandNums();
   noDup();
@@ -113,8 +117,6 @@ function clickHandler(event) {
       divEl.removeEventListener('click', clickHandler);
     } else {
       checkImg();
-      oldImgNum = [];
-      oldImgNum = randomNums;
     }
   } else {
     console.log('Clicked On Div');
