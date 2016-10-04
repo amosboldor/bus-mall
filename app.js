@@ -47,25 +47,18 @@ function pushRandNums() {
   randomNums.push(randomNum());
   randomNums.push(randomNum());
 }
-pushRandNums();
-noDup();
-
-var oldImgNum = randomNums;
 
 function render() {
   imgEl1.setAttribute('src', products[randomNums[0]].path);
   imgEl2.setAttribute('src', products[randomNums[1]].path);
   imgEl3.setAttribute('src', products[randomNums[2]].path);
 }
-render();
 
 function noDup() {
   console.log(randomNums, 'beggining of no dup');
   while (randomNums[0] === randomNums[1]) {
-    if (randomNums.indexOf(randomNums[0]) === 0) {
-      console.log(randomNums, 'Duplicate between first and second numbers caught and fixed');
-      randomNums[1] = randomNum();
-    }
+    console.log(randomNums, 'Duplicate between first and second numbers caught and fixed');
+    randomNums[0] = randomNum();
   }
   while (randomNums[0] === randomNums[2]) {
     console.log(randomNums, 'Duplicate between first and third numbers caught and fixed');
@@ -80,6 +73,13 @@ function noDup() {
 
 function checkImg() {
   ++numOfClicks;
+  console.log(event.srcElement.attributes[1].nodeValue);
+  var hit = event.srcElement.attributes[1].nodeValue;
+  for (var i = 0; i < products.length; i++) {
+    if (products[i].path === hit) {
+      products[i].numTimeClick++;
+    }
+  }
   var clickedItem = event.target.id;
   console.log('Clicked on ' + clickedItem);
   randomNums = [];
@@ -88,15 +88,33 @@ function checkImg() {
   render();
 }
 
+function displayList() {
+  var ulEl = document.createElement('ul');
+  for (var i = 0; i < products.length; i++) {
+    var liEl = document.createElement('li');
+    liEl.textContent = products[i].numTimeClick + ' votes for the ' + products[i].name;
+    ulEl.appendChild(liEl);
+  }
+  document.body.appendChild(ulEl);
+}
+
+var oldImgNum = randomNums;
+pushRandNums();
+noDup();
+render();
+
 function clickHandler(event) {
   console.log('called event');
   if (event.target !== event.currentTarget) {
     if (numOfClicks === 25) {
       console.log('25 clicks');
       numOfClicks = 0;
+      displayList();
       divEl.removeEventListener('click', clickHandler);
     } else {
       checkImg();
+      oldImgNum = [];
+      oldImgNum = randomNums;
     }
   } else {
     console.log('Clicked On Div');
