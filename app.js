@@ -219,10 +219,12 @@ function drawChart() {
 
 chart.addEventListener('click', function(){
   drawChart();
+  chart.style.display = 'none';
 });
 
 list.addEventListener('click', function(){
   displayList();
+  list.style.display = 'none';
 });
 
 divEl.addEventListener('click', clickHandler);
