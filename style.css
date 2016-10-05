@@ -36,7 +36,40 @@ h1 {
   top: 30px;
   left: 790px;
 }
-button {
-  display: inline;
+#buttons {
+  width: 300px;
+  height: 48px;
+  margin: 0 auto;
+  position: relative;
+}
+#draw-chart {
+  background-color: blue; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+#draw-list {
+  background-color: blue; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+ul {
+  margin: 20px auto;
+  width: 350px;
+
 }
