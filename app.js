@@ -113,6 +113,10 @@ function checkImg() {
   var clickedItem = event.target.id;
   console.log('Clicked on ' + clickedItem);
   oldImgNum = randomNums;
+  for (var j = 0; j < randomNums.length; j++) {
+    var objNum = randomNums[j];
+    products[objNum].numTimeShown++;
+  }
   randomNums = [];
   noDup();
   render();
