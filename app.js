@@ -7,6 +7,8 @@ var imgEl3 = document.getElementById('img3');
 var products = [];
 var productsName = [];
 var votes = [];
+var randomNums = [];
+var numOfClicks = 0;
 
 if (localStorage.getItem('products')) {
   retrieveLs();
@@ -51,6 +53,8 @@ var chart = document.getElementById('draw-chart');
 chart.style.display = 'none';
 var list = document.getElementById('draw-list');
 list.style.display = 'none';
+var clear = document.getElementById('clear');
+clear.style.display = 'none';
 
 
 function Product(name, path, numTimeShown, numTimeClick) {
@@ -60,11 +64,6 @@ function Product(name, path, numTimeShown, numTimeClick) {
   this.numTimeClick = numTimeClick || 0;
   products.push(this);
 }
-
-
-
-var randomNums = [];
-var numOfClicks = 0;
 
 function randomNum() {
   return Math.floor(Math.random() * (19 + 1));
@@ -113,6 +112,10 @@ function checkImg() {
   var clickedItem = event.target.id;
   console.log('Clicked on ' + clickedItem);
   oldImgNum = randomNums;
+  for (var j = 0; j < randomNums.length; j++) {
+    var objNum = randomNums[j];
+    products[objNum].numTimeShown++;
+  }
   randomNums = [];
   noDup();
   render();
@@ -122,7 +125,7 @@ function displayList() {
   var ulEl = document.createElement('ul');
   for (var i = 0; i < products.length; i++) {
     var liEl = document.createElement('li');
-    liEl.textContent = products[i].numTimeClick + ' votes for the ' + products[i].name;
+    liEl.textContent = products[i].numTimeClick + ' votes for the ' + products[i].name + '. Shown: ' + products[i].numTimeShown;
     ulEl.appendChild(liEl);
   }
   document.body.appendChild(ulEl);
@@ -149,6 +152,7 @@ function clickHandler(event) {
       divEl.removeEventListener('click', clickHandler);
       chart.style.display = 'block';
       list.style.display = 'block';
+      clear.style.display = 'block';
       makeLs();
     } else {
       checkImg();
@@ -246,6 +250,11 @@ chart.addEventListener('click', function(){
 list.addEventListener('click', function(){
   displayList();
   list.style.display = 'none';
+});
+
+clear.addEventListener('click', function(){
+  localStorage.clear();
+  clear.style.display = 'none';
 });
 
 divEl.addEventListener('click', clickHandler);

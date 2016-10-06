@@ -37,13 +37,13 @@ h1 {
   left: 790px;
 }
 #buttons {
-  width: 300px;
+  width: 400px;
   height: 48px;
   margin: 0 auto;
   position: relative;
 }
 #draw-chart {
-  background-color: blue; /* Green */
+  background-color: blue;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -56,7 +56,7 @@ h1 {
   left: 0px;
 }
 #draw-list {
-  background-color: blue; /* Green */
+  background-color: blue;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -67,6 +67,19 @@ h1 {
   position: absolute;
   top: 0px;
   right: 0px;
+}
+#clear {
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: absolute;
+  top: 0px;
+  left: 156px;
 }
 ul {
   margin: 20px auto;
