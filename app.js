@@ -125,7 +125,7 @@ function displayList() {
   var ulEl = document.createElement('ul');
   for (var i = 0; i < products.length; i++) {
     var liEl = document.createElement('li');
-    liEl.textContent = products[i].numTimeClick + ' votes for the ' + products[i].name + '. Shown: ' + products[i].numTimeShown;
+    liEl.textContent = products[i].numTimeClick + ' votes for the ' + products[i].name + '. Shown: ' + products[i].numTimeShown + ' times';
     ulEl.appendChild(liEl);
   }
   document.body.appendChild(ulEl);
