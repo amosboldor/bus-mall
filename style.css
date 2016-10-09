@@ -1,11 +1,14 @@
+body {
+  background-color: #ffa366;
+}
 #top {
   height: 200px;
-  width: 600px;
+  width: 1170px;
   margin: 0 auto;
 }
 p {
   height: 100px;
-  width: 300px;
+  width: 500px;
   margin: 0 auto;
 }
 h1 {
@@ -25,25 +28,28 @@ h1 {
   position: absolute;
   top:30px;
   left: 30px;
+  cursor: pointer;
 }
 #img2 {
   position: absolute;
   top: 30px;
   left: 410px;
+  cursor: pointer;
 }
 #img3 {
   position: absolute;
   top: 30px;
   left: 790px;
+  cursor: pointer;
 }
 #buttons {
   width: 400px;
   height: 48px;
-  margin: 0 auto;
+  margin: 10px auto 0 auto;
   position: relative;
 }
 #draw-chart {
-  background-color: blue;
+  background-color: #1b5dc1;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -54,9 +60,11 @@ h1 {
   position: absolute;
   top: 0px;
   left: 0px;
+  cursor: pointer;
+  transition: all 0.5s ease;
 }
 #draw-list {
-  background-color: blue;
+  background-color: #1b5dc1;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -67,9 +75,11 @@ h1 {
   position: absolute;
   top: 0px;
   right: 0px;
+  cursor: pointer;
+  transition: all 0.5s ease;
 }
 #clear {
-  background-color: blue;
+  background-color: #1b5dc1;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -80,6 +90,20 @@ h1 {
   position: absolute;
   top: 0px;
   left: 156px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+#clear:hover {
+  background-color: #E58A00;
+  border: 1px solid black;
+}
+#draw-chart:hover {
+  background-color: #E58A00;
+  border: 1px solid black;
+}
+#draw-list:hover {
+  background-color: #E58A00;
+  border: 1px solid black;
 }
 ul {
   margin: 20px auto;

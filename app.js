@@ -34,7 +34,7 @@ if (localStorage.getItem('products')) {
   new Product('Unicorn Meat', 'img/unicorn.jpg');
   new Product('Tentacle USB', 'img/usb.jpg');
   new Product('Water Can', 'img/water-can.jpg');
-  new Product('Win Glass', 'img/wine-glass.jpg');
+  new Product('Wine Glass', 'img/wine-glass.jpg');
 }
 function makeLs(){
   localStorage.setItem('products', JSON.stringify(products));
@@ -222,7 +222,7 @@ var data = {
 
 function drawChart() {
   var ctx = document.getElementById('productChart');
-  var productChart = new Chart(ctx, {
+  var productChart = new Chart(ctx, { // eslint-disable-line
     type: 'bar',
     data: data,
     options: {
